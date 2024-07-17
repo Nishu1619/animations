@@ -304,6 +304,93 @@ body {
   opacity: var(--swiper-pagination-bullet-active-opacity, 0.85) !important;
   --swiper-pagination-bullet-horizontal-gap: 10px;
 }
+           .testimonial-top img:nth-child(1) {
+  width: 195px;
+  height: 195px;
+  object-fit: contain;
+  opacity: .4;
+}
+.testimonial-section img{
+    cursor: pointer;
+}
+.testimonial-top img:nth-child(2) {
+  width: 159px;
+  height: 159px;
+  object-fit: contain;
+  opacity: .4;
+}
+.testimonial-top img:nth-child(1) {
+  margin-top: 152px;
+}
+.testimonial-top {
+  padding: 0 200px;
+}
+
+.testimonial-center {
+  padding: 0 224px 0 30px;
+}
+.testimonial-center img:nth-child(1) {
+  width: 305px;
+  height: 305px;
+  object-fit: contain;
+  margin-top: -120px;
+}
+.testimonial-bottom {
+  padding: 0 60px 0 30px;
+}
+.testimonial-bottom img:nth-child(1) {
+  width: 299px;
+  height: 299px;
+  object-fit: contain;
+  margin-top: -104px;
+  opacity: .4;
+}
+.testimonial-bottom img:nth-child(2) {
+  width: 195px;
+  height: 195px;
+  object-fit: contain;
+  opacity: .4;
+}
+.testimonial-section {
+  padding: 70px 0;
+}
+.testimonial-section h2 {
+  color: #181818;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 50px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding-bottom: 90px;
+}
+
+.Testimonial1 p, .Testimonial2 p, .Testimonial3 p, .Testimonial4 p, .Testimonial5 p {
+  color: #716f6c;
+  text-align: justify;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+}
+.Testimonial1, .Testimonial2, .Testimonial3, .Testimonial4, .Testimonial5 {
+  padding: 0 174px;
+  display: none;
+}
+.active-testimonial {
+  display: block !important;
+}
+@media (max-width: 1800px) {
+    .testimonial-top {
+  padding: 0 100px 0 40px;
+}
+.testimonial-bottom img:nth-child(1) {
+  width: 210px;
+  height: auto;
+}
+.testimonial-center img:nth-child(1) {
+  width: 250px;
+  height: auto;
+}
+}
     </style>
 </head>
 
@@ -510,8 +597,46 @@ body {
        
     </section>
 
-   
+    <h1 style="color:Red;font-size:46px;padding:50px 0;">Animation 4 </h1>
 
+     <section class='testimonial-section'>
+   <h2 class="text-center">Testimonial changed & image changed</h2>
+    <div class="flex items-center">
+      <div class="testimonial-left w-1/2">
+        <div class="flex testimonial-top justify-between">
+          <img src="https://getpos.in/files/image 28.webp" alt="logo1" class="clickable-image" data-index="1" id="image-1" />
+          <img src="https://getpos.in/files/image 29.webp" alt="logo1" class="clickable-image" data-index="2" id="image-2" />
+        </div>
+        <div class="flex testimonial-center justify-end">
+          <img src="https://getpos.in/files/image 30.webp" alt="logo1" class="clickable-image" data-index="3" id="middle-image" />
+        </div>
+        <div class="flex testimonial-bottom justify-between">
+          <img src="https://getpos.in/files/image 31.webp" alt="logo1" class="clickable-image" data-index="4" id="image-4" />
+          <img src="https://getpos.in/files/image 32.webp" alt="logo1" class="clickable-image" data-index="5" id="image-5" />
+        </div>
+      </div>
+      <img src="https://getpos.in/files/Testimonial-line.webp" alt="logo1" class="Testimonial-line" />
+  
+      <div class="testimonial-right w-1/2">
+        <div class="Testimonial1" id="testimonial-1">
+          <p>"Testimonial 1: "</p>
+        </div>
+        <div class="Testimonial2" id="testimonial-2">
+          <p>"Testimonial 2: "</p>
+        </div>
+        <div class="Testimonial3" id="testimonial-3">
+          <p>"Testimonial 3: "</p>
+        </div>
+        <div class="Testimonial4" id="testimonial-4">
+          <p>"Testimonial 4: "</p>
+        </div>
+        <div class="Testimonial5" id="testimonial-5">
+          <p>"Testimonial 5: "</p>
+        </div>
+      </div>
+    </div>
+  </section>
+     
     <!-- swipper -->
     <script>
        document.addEventListener('DOMContentLoaded', function () {
@@ -605,6 +730,27 @@ body {
         imageElements.forEach((imageElement, index) => {
             changeImage(imageElement, imgLists[index], featureButtons[index], index);
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+  const clickableImages = document.querySelectorAll('.clickable-image');
+  const middleImage = document.getElementById('middle-image');
+  const testimonials = document.querySelectorAll('.testimonial-right div');
+
+  clickableImages.forEach(image => {
+    image.addEventListener('click', function() {
+      const tempSrc = middleImage.src;
+      middleImage.src = this.src;
+      this.src = tempSrc;
+
+      testimonials.forEach(testimonial => testimonial.classList.remove('active-testimonial'));
+      const index = this.getAttribute('data-index');
+      document.getElementById(`testimonial-${index}`).classList.add('active-testimonial');
+    });
+  });
+
+  document.getElementById('testimonial-3').classList.add('active-testimonial');
+});
+
     </script>
 </body>
 
